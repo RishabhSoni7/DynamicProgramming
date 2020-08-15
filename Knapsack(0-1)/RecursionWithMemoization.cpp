@@ -4,7 +4,10 @@
 using namespace std;
 
 int knapsack(int* weights, int* values, int n, int maxWeight,int** dp){
-    if(n<=0||maxWeight<=0){
+    if(n<0||maxWeight<0){ //edge case
+        return 0;
+    }
+    if(n==0||maxWeight==0){
         return 0;
     }
     if(dp[n][maxWeight]!=-1){
