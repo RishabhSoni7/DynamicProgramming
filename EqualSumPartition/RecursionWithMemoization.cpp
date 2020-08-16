@@ -40,8 +40,8 @@ int main(){
     }
     int** dp= new int*[5];//n+1 where n is size   
     for(int i=0;i<=n;i++){
-        dp[i]=new int[sum+1];
-        for(int j=0;j<=sum;j++){
+        dp[i]=new int[sum/2+1];
+        for(int j=0;j<=sum/2;j++){
             dp[i][j]=-1;
         }
     }
