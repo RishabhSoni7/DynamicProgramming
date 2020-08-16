@@ -28,15 +28,16 @@ bool subsetSum(int* set, int n, int sum,int** dp){
 }
 
 int main(){
-    int set[]={3, 34, 4, 12, 5, 2};
-    int sum=9;
-    int** dp= new int*[7];//n+1 where n is size
-    for(int i=0;i<=7;i++){
+    int set[]={1,1,5};
+    int n=3;
+    int sum=2;
+    int** dp= new int*[n+1];//n+1 where n is size
+    for(int i=0;i<=n;i++){
         dp[i]=new int[sum+1];
         for(int j=0;j<=sum;j++){
             dp[i][j]=-1;
         }
     }
-    bool ans=subsetSum(set,6,sum,dp);
+    bool ans=subsetSum(set,n,sum,dp);
     cout<<ans<<endl;
 }
