@@ -8,21 +8,28 @@ int minimumCoins(int* coin, int n, int value){
         return 0;
     }
 
-    if(value==0){
-        return 0;  //as number of coins asked
+    int** dp=new int*[n+1];
+    for(int i=0;i<=n;i++){
+        dp[i]=new int[value+1];
     }
 
-    if(n==0){
-        return INT_MAX-100;  //1+karenge to limit se exceed ho sakta hai
+    for(int i=0;i<=n;i++){
+        dp[i][0]=0;
+    }
+    for(int j=1;j<=value;j++){
+        dp[0][j]=INT_MAX-1; //as INT_MAX+1 can exceed the int limit
     }
 
-    if(coin[n-1]<=value){
-        int option1=1+minimumCoins(coin,n,value-coin[n-1]);
-        int option2=minimumCoins(coin,n-1,value);
-        return min(option1,option2);
-    }else{
-         return minimumCoins(coin,n-1,value);
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=value;j++){
+            if(coin[i-1]<=j){
+                dp[i][j]=min(1+dp[i][j-coin[i-1]],dp[i-1][j]);          
+            }else{
+                dp[i][j]=dp[i-1][j];
+            }
+        }
     }
+    return dp[n][value];
 
 }
 
